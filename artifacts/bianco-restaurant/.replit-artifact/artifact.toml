@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Bianco Italian Restaurant"
+description = "A responsive single-page website for Bianco, an Italian restaurant in Madinah, featuring its signature Pizza Ajwa, menu highlights, gallery, location, hours, and contact details."
+version = "1.0.0"
+id = "artifacts/bianco-restaurant"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24174
+
+[services.development]
+run = "pnpm --filter @workspace/bianco-restaurant run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bianco-restaurant", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/bianco-restaurant/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24174"
+BASE_PATH = "/"

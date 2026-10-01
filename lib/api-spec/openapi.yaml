@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: menu
+    description: Public menu and guest cart operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /menu:
+    get:
+      operationId: getMenu
+      tags: [menu]
+      summary: Get the current menu
+      description: Returns active menu categories and their available dishes.
+      responses:
+        "200":
+          description: Current menu
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MenuResponse"
+  /carts/{cartId}:
+    parameters:
+      - name: cartId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getCart
+      tags: [menu]
+      summary: Get a guest cart
+      responses:
+        "200":
+          description: Current cart and live item prices
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartResponse"
+        "400":
+          description: Invalid cart ID
+    put:
+      operationId: putCart
+      tags: [menu]
+      summary: Replace a guest cart
+      description: Saves item IDs and quantities; current names and prices are read from the menu catalog.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartUpdateRequest"
+      responses:
+        "200":
+          description: Saved cart
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartResponse"
+        "400":
+          description: Invalid cart or item data
+        "404":
+          description: A menu item is missing or unavailable
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    MenuResponse:
+      type: object
+      required: [categories]
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: "#/components/schemas/MenuCategory"
+    MenuCategory:
+      type: object
+      required: [id, titleEn, titleAr, sortOrder, items]
+      properties:
+        id:
+          type: string
+        titleEn:
+          type: string
+        titleAr:
+          type: string
+        sortOrder:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/MenuItem"
+    MenuItem:
+      type: object
+      required:
+        - id
+        - categoryId
+        - nameEn
+        - nameAr
+        - descriptionEn
+        - descriptionAr
+        - price
+        - calories
+        - imagePath
+        - featured
+        - sortOrder
+        - available
+      properties:
+        id:
+          type: string
+        categoryId:
+          type: string
+        nameEn:
+          type: string
+        nameAr:
+          type: string
+        descriptionEn:
+          type: string
+        descriptionAr:
+          type: string
+        price:
+          type: number
+          minimum: 0
+        calories:
+          type: [integer, "null"]
+          minimum: 0
+        imagePath:
+          type: [string, "null"]
+        featured:
+          type: boolean
+        sortOrder:
+          type: integer
+        available:
+          type: boolean
+    CartUpdateRequest:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          maxItems: 100
+          items:
+            $ref: "#/components/schemas/CartItemInput"
+    CartItemInput:
+      type: object
+      required: [itemId, quantity]
+      properties:
+        itemId:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 99
+    CartLine:
+      type: object
+      required: [item, quantity]
+      properties:
+        item:
+          $ref: "#/components/schemas/MenuItem"
+        quantity:
+          type: integer
+          minimum: 1
+          maximum: 99
+    CartResponse:
+      type: object
+      required: [cartId, items, subtotal, updatedAt]
+      properties:
+        cartId:
+          type: string
+          format: uuid
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CartLine"
+        subtotal:
+          type: number
+          minimum: 0
+        updatedAt:
+          type: [string, "null"]
+          format: date-time
+

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: 12 21% 6%;
+  --foreground: 38 43% 93%;
+  --border: 12 15% 23%;
+  --card: 14 22% 10%;
+  --card-foreground: 38 43% 93%;
+  --primary: 12 76% 62%;
+  --primary-foreground: 12 21% 6%;
+  --accent: 35 82% 69%;
+  --accent-foreground: 12 21% 6%;
+  --muted-foreground: 28 15% 62%;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Bodoni Moda', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: .2rem;
+}
+
+.bianco-menu { font-family: var(--font-sans); background: #530f0c; color: #f5eee2; }
+.bianco-menu .font-display { font-family: var(--font-serif); }
+.bianco-menu .font-mono-ui { font-family: var(--font-mono); }
+.bianco-menu .product-card { transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .4s ease, box-shadow .4s ease; }
+.bianco-menu .product-card:hover { border-color: rgba(242,180,109,.5); box-shadow: 0 24px 70px rgba(0,0,0,.34); }
+.bianco-menu .focus-ring:focus-visible { outline: 2px solid #f2b46d; outline-offset: 4px; }

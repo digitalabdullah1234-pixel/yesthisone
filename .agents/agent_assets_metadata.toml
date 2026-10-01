@@ -1,0 +1,30 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "oadWQqD6CFXYqeaFo3IGq"
+uri = "file://attached_assets/image_search/bianco-listing-1.jpg"
+type = "image"
+title = "A — Bianco entrance and olive trees"
+description = "Photo surfaced by your Google Maps listing. Landscape composition; strongest fit for a wide hero. Preview only—not applied to the website."
+logical_id = "298e646f-ad25-434a-bb67-ba340352923a"
+content_hash = "sha256:7e506e6ac4d1d75fb94cda28bf1d4e78072969b5930a0b0df8fd917b50888407"
+size = 470367
+mtime_ms = 1790109862769
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:892988ba-dba6-4cbc-b22f-62c0dcec5d65/298e646f-ad25-434a-bb67-ba340352923a/13ce09d1-0888-4d6a-930b-72d813654e01"
+storage_version_token = "1790109930449596"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "0P0kvTgoYZNudJ2lSrdBy"
+uri = "file://attached_assets/image_search/bianco-listing-2.jpg"
+type = "image"
+title = "B — Interior, columns and hanging lights"
+description = "Photo surfaced by your Google Maps listing. Stronger dining atmosphere, but portrait orientation limits a wide crop. Preview only—not applied to the website."
+logical_id = "7948b015-1253-4edd-9c61-ae7e08b25b8c"
+content_hash = "sha256:5c4b463a2719e4f1e9ea3dd509cac5babb67f1cce77a61c37a5f28600531f89f"
+size = 197939
+mtime_ms = 1790109862613
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:892988ba-dba6-4cbc-b22f-62c0dcec5d65/7948b015-1253-4edd-9c61-ae7e08b25b8c/a9daf0d3-47b9-4f42-9e18-0b3557a215df"
+storage_version_token = "1790109931773394"
+content_type = "image/jpeg"

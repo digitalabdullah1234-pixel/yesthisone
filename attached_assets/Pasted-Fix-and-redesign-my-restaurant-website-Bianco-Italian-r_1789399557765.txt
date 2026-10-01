@@ -1,0 +1,38 @@
+Fix and redesign my restaurant website (Bianco - Italian restaurant in Madinah) with the following changes:
+
+1. COLOR THEME / DESIGN
+- Remove the current dark red/maroon + brown color palette completely, it looks bad.
+- Redesign the entire site with a more premium, elegant Italian restaurant look — use a refined palette such as deep charcoal black, cream/ivory, and a single warm gold/amber accent (no red tones anywhere).
+- Fix the overall layout — spacing, alignment, and section structure currently look messy/unpolished. Make it clean, modern, and consistent across all sections (hero, menu, about, find us, footer).
+
+2. INTRO / LOADING ANIMATION
+- Add a loading animation when the site first opens:
+  - The word "bianco" should appear at the top of the screen made of small joined/connected dots (like a dotted line forming the logo).
+  - It should animate downward from the top and move toward the center of the screen.
+  - Once it reaches the center, it should fully load into the complete logo, and then the full page (hero + menu) should fade/reveal in.
+
+3. CHECKOUT / PAYMENT
+- Remove the "Checkout via WhatsApp" flow completely.
+- Replace it with a real online payment checkout (credit/debit card or a payment gateway like Moyasar, PayTabs, Stripe, or similar) so customers pay online directly on the site, not through WhatsApp.
+
+4. RATING SECTION
+- Move the "Google Rating" section (the block showing rating, last order time, location) to the very bottom of the page, just above the footer — not in the middle of the page.
+
+5. MAPS / FIND US SECTION
+- Remove the embedded Google Maps iframe (it looks bad/ugly).
+- Replace it with a clean text-based "Find Us" block that just shows the address and a button/link labeled "Open in Google Maps" that opens the location in Google Maps in a new tab. No embedded map box.
+
+6. MENU CONTENT
+- Do NOT use or import the menu PDF I mentioned earlier — ignore that file completely. Keep the menu items/content already on the current site as they are (do not replace them with the PDF menu).
+
+7. ADMIN BACKEND PANEL (NEW)
+- Build a separate admin/backend dashboard (protected with a login) where I can manage the menu and orders myself.
+- In this admin panel I should be able to:
+  - Add a new menu item with: Name, Category, Price, and Picture (image upload).
+  - Edit an existing menu item (all fields above).
+  - Delete a menu item.
+  - View incoming orders (list of orders placed by customers with items, total price, and status).
+  - Update order status (e.g. pending, confirmed, completed).
+- All menu items I add/edit/delete in the admin panel should automatically reflect on the live customer-facing menu page.
+
+Please implement all of the above and keep the site fully responsive on mobile and desktop.
