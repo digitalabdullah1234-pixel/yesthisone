@@ -1,0 +1,42 @@
+# Coolify: Build Pack = Docker Compose. Domain sirf "web" service ko do.
+services:
+  web:
+    build:
+      context: .
+      target: web
+    restart: unless-stopped
+    expose:
+      - "80"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: .
+      target: api
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgres://bianco:${SERVICE_PASSWORD_POSTGRES}@db:5432/bianco
+    expose:
+      - "8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=bianco
+      - POSTGRES_PASSWORD=${SERVICE_PASSWORD_POSTGRES}
+      - POSTGRES_DB=bianco
+    volumes:
+      - bianco-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bianco -d bianco"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  bianco-db:
